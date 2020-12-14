@@ -1,10 +1,10 @@
-package ms.ynov.article;
+package ms.ynov.articleapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ArticleApplicationTests {
+class ArticleApiApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ms.ynov</groupId>
-	<artifactId>article</artifactId>
+	<artifactId>article-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>article</name>
+	<name>article-api</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
