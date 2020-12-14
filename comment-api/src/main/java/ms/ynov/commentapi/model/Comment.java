@@ -8,6 +8,16 @@ import javax.persistence.Id;
 
 @Entity
 public class Comment {
+
+	@Id
+    @GeneratedValue
+    private Integer id;
+
+    private Date date;
+    
+    private Integer user;
+
+    private String content;
 	
     public Integer getId() {
 		return id;
@@ -39,16 +49,5 @@ public class Comment {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	@Id
-    @GeneratedValue
-    private Integer id;
-
-    private Date date;
-    
-    private Integer user;
-    
-    private String content;
-    
+	}   
 }
