@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+    <table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Username</th>
+				<th>Password</th>
+				<th>Mail</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="user: ${users}">
+				<td><span th:text="${user.id}"></span></td>
+				<td><span th:text="${user.username}"></span></td>
+                <td><span th:text="${user.password}"></span></td>
+                <td><span th:text="${user.mail}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
