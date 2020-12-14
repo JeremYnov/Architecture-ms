@@ -12,6 +12,9 @@ public class GatewayConfig {
 	public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
 		return builder.routes()
 		.route(r -> r.path("/user/**").uri("lb://userapi"))
+		.route(r -> r.path("/category/**").uri("lb://categoryapi"))
+		.route(r -> r.path("/article/**").uri("lb://articleapi"))
+		.route(r -> r.path("/comment/**").uri("lb://commentapi"))
 		.build();
 	}
 }
