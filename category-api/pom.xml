@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ms.ynov</groupId>
-	<artifactId>category</artifactId>
+	<artifactId>category-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>category</name>
+	<name>category-api</name>
 	<description>Category project for Spring Boot</description>
 
 	<properties>

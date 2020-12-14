@@ -1,10 +1,10 @@
-package ms.ynov.category;
+package ms.ynov.categoryapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CategoryApplicationTests {
+class CategoryApiApplicationTests {
 
 	@Test
 	void contextLoads() {
