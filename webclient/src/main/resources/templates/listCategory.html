@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Categories</title>
+</head>
+<body>
+    <table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="category: ${categories}">
+				<td><span th:text="${category.id}"></span></td>
+				<td><span th:text="${category.name}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
