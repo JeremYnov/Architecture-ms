@@ -41,4 +41,19 @@ public class CommentService {
 
 		return listComment;
 	}
+	
+	public Iterable<CommentR> getCommentsByArticle(int id) {
+		Iterable<Comment> comments = commentRepository.findByArticle(id);
+		Iterator<Comment> iterator = comments.iterator();
+		ArrayList<CommentR> listComment = new ArrayList<CommentR>();
+
+		while (iterator.hasNext()) {
+			Comment p = iterator.next();
+			CommentR commentR = commentTransformer.transform(p);
+
+			listComment.add(commentR);
+		}
+
+		return listComment;
+	}
 }

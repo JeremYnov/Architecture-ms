@@ -14,12 +14,22 @@ public class Comment {
     private Integer id;
 
     private Date date;
-    
-    private Integer user;
 
     private String content;
+    
+    private Integer user;
+    
+    private Integer article;
 	
-    public Integer getId() {
+    public Integer getArticle() {
+		return article;
+	}
+
+	public void setArticle(Integer article) {
+		this.article = article;
+	}
+
+	public Integer getId() {
 		return id;
 	}
 

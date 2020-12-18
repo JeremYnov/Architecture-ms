@@ -7,5 +7,6 @@ import ms.ynov.commentapi.model.Comment;
 
 @Repository
 public interface CommentRepository extends CrudRepository<Comment, Integer>{
-
+	
+	Iterable<Comment> findByArticle(Integer article);
 }
