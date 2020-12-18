@@ -1,5 +1,6 @@
 package ms.ynov.commentapi.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -55,5 +56,35 @@ public class CommentService {
 		}
 
 		return listComment;
+	}
+	
+	//Creation d'un commentaire
+	public Comment createComment(Comment comment) {
+		comment = commentRepository.save(comment);
+ 		return comment;
+ 	}
+	
+	//Suppresion d'un commentaire
+	public void deleteComment(int id) {
+		commentRepository.deleteById(id);
+	}
+	
+	// Modification d'une categorie
+	public Comment updateComment(int id, Comment comment) {
+		Comment currentComment = commentRepository.findById(id).get();
+			
+		String content = comment.getContent();
+		Date date = comment.getDate(); 
+		
+		if(content != null) {
+			currentComment.setContent(content);
+		}
+		
+		if(date != null) {
+			currentComment.setDate(date);
+		}
+			
+		currentComment = commentRepository.save(currentComment);
+		return currentComment;
 	}
 }
