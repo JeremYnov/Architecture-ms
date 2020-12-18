@@ -27,4 +27,10 @@ public class CommentController {
         CommentR comment = commentService.getComment(id);
         return comment;
 	}
+    
+    @GetMapping("/comment/article/{id}")
+    public Iterable<CommentR> getCommentByArticle(@PathVariable("id") int id){
+    	Iterable<CommentR> comments = commentService.getCommentsByArticle(id);
+        return comments;
+	}
 }
