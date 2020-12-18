@@ -20,8 +20,6 @@ public class Article {
     
     private String content;
     
-    private Integer comment;
-    
     public Integer getId() {
 		return id;
 	}
@@ -38,11 +36,11 @@ public class Article {
 		this.category = category;
 	}
 
-	public Integer getAuthor() {
+	public Integer getUser() {
 		return user;
 	}
 
-	public void setAuthor(Integer author) {
+	public void setUser(Integer author) {
 		this.user = author;
 	}
 
@@ -60,13 +58,5 @@ public class Article {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public Integer getComment() {
-		return comment;
-	}
-
-	public void setComment(Integer comment) {
-		this.comment = comment;
 	}
 }

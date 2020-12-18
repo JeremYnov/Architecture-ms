@@ -13,7 +13,7 @@ public class ArticleR {
     
     private String content;
     
-    private Integer comment;
+    private Iterable<Comment> comments;
     
     public Integer getId() {
 		return id;
@@ -39,13 +39,6 @@ public class ArticleR {
 		this.content = content;
 	}
 
-	public Integer getComment() {
-		return comment;
-	}
-
-	public void setComment(Integer comment) {
-		this.comment = comment;
-	}
 
 	public Category getCategory() {
 		return category;
@@ -61,5 +54,13 @@ public class ArticleR {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Iterable<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(Iterable<Comment> comments) {
+		this.comments = comments;
 	}
 }
