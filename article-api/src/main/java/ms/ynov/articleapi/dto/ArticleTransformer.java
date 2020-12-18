@@ -35,8 +35,8 @@ public class ArticleTransformer {
 		Category category = categoryProxy.getCategory(article.getCategory());
 		articleR.setCategory(category);
 		
-//		Iterable<Comment> comments = commentProxy.getComments(article.getId());
-//		articleR.setComments(comments);
+		Iterable<Comment> comments = commentProxy.getComments(article.getId());
+		articleR.setComments(comments);
 		
 		return articleR;
 	}
