@@ -26,11 +26,16 @@ public class WebClientController {
 		return "listCategory";
 	}
 
-    @GetMapping("/")
-	public String getHomePage(Model model) {
+    @GetMapping("/user")
+	public String getUserPage(Model model) {
 		Iterable<User> users = userProxy.getUsers();
         model.addAttribute("users", users);
         
 		return "user";
+	}
+
+	@GetMapping("/")
+	public String getHomePage() {
+		return "homePage";
 	}
 }
