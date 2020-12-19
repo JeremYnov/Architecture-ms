@@ -1,5 +1,10 @@
 version: "3"
 services:
+  db:
+    build: database/.
+    restart: always
+    ports:
+      - 3306:3306
   ms-eureka:
     build: ms-eureka/.
     ports:
@@ -17,32 +22,41 @@ services:
     ports:
       - "9102:9102"
   userapi:
-    build: ms-user/.
+    build: ms-userapi/.
+    restart: always
     depends_on:
+      - db
       - ms-eureka
     ports:
       - "9005:9005"
   commentapi:
-    build: ms-comment/.
+    build: ms-commentapi/.
+    restart: always
     depends_on:
+      - db
       - ms-eureka
     ports:
       - "9008:9008"
   categoryapi:
-    build: ms-category/.
+    build: ms-categoryapi/.
+    restart: always
     depends_on:
+      - db
       - ms-eureka
     ports:
       - "9007:9007"
   articleapi:
-    build: ms-article/.
+    build: ms-articleapi/.
+    restart: always
     depends_on:
+      - db
       - ms-eureka
     ports:
       - "9006:9006"
   webclient:
     build: ms-webclient/.
     depends_on:
+      - db
       - ms-eureka
     ports:
       - "8080:8080"
