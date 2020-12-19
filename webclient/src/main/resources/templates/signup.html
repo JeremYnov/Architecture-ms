@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml"
+    xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Signup</title>
+</head>
+<body>
+<span th:if="${error != null}">
+<span th:text="${error}"></span> 
+</span>
+
+<form method="post" th:action="@{/save/user}" th:object="${user}">
+
+<label>Username</label>
+<input type="text" th:field="*{username}" required />
+
+<label>Password</label>
+<input type="password" th:field="*{password}" required/>
+
+<label>Verification password</label>
+<input type="password" th:field="*{verifyPassword}" required/>
+
+<label>Email</label>
+<input type="email" th:field="*{mail}" required/>
+
+<input type="submit" value="Valider"/>
+
+</form>
+
+
+</body> 
+</html>
