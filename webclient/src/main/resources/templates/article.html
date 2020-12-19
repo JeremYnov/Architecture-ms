@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+    <div th:text="${article.id}"></div>
+    <div th:text="${article.date}"></div>
+    <div th:text="${article.content}"></div>
+    <div th:text="${article.category.id}"></div>
+    <div th:text="${article.category.name}"></div>
+    <div th:text="${article.user.id}"></div>
+    <div th:text="${article.user.username}"></div>
+    <div th:each="comment: ${article.comments}">
+        <span th:text="${comment.content}"></span>
+        <span th:text="${comment.date}"></span>
+    </div>
+
+</body>
+</html>
