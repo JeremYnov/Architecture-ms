@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ms.ynov.articleapi.dto.ArticleR;
 import ms.ynov.articleapi.model.Article;
 import ms.ynov.articleapi.service.ArticleService;
-import ms.ynov.categoryapi.model.Category;
-
-
 
 @RestController
 public class ArticleController {
