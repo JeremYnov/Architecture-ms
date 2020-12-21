@@ -9,32 +9,7 @@
     />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">Blog Java</a>
-      <!-- <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
-      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="/user">Home</a>
-          <a class="nav-item nav-link active" href="/category">Features</a>
-          <a class="nav-item nav-link active" href="#">Pricing</a>
-        </div>
-        <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="/user">Home</a>
-          <a class="nav-item nav-link active" href="/category">Features</a>
-          <a class="nav-item nav-link active" href="#">Pricing</a>
-        </div>
-      </div>
-    </nav>
+    <header th:insert="fragments/navbar.html :: nav"></header>
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
@@ -92,7 +67,7 @@
               />
               <div class="media-body">
                 <h5 class="mt-0">
-                  Username le <span th:text="${comment.date}"></span>
+                  <span th:text="${comment.user.username}"></span> le <span th:text="${comment.date}"></span>
                 </h5>
                 <span th:text="${comment.content}"></span>
               </div>
@@ -108,7 +83,7 @@
                 <div class="col">
                   <ul class="list-unstyled mb-0" th:each="category: ${categories}">
                     <li>
-                      <a href="#" th:text="${category.name}"></a>
+                      <a th:href="'/category/'+${category.id}+'/articles'" th:text="${category.name}"></a>
                     </li>
                   </ul>
                 </div>

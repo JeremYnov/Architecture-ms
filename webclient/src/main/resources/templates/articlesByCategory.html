@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Articles</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8">
+          <h1 class="my-4"><span th:text="${articles[0].category.name}"></span> : Articles</h1>
+
+          <!-- Blog Post -->
+          <div class="row">
+            <div
+              class="posts-container col mb-4"
+              th:each="article: ${articles}"
+            >
+              <div class="card h-100">
+                <a th:href="'/article/' + ${article.id}"
+                  ><img
+                    class="card-img-top"
+                    src="http://placehold.it/700x400"
+                    alt=""
+                /></a>
+                <div class="card-body">
+                  <h4 class="card-title">
+                    <a th:href="'/article/' + ${article.id}">Article Title</a>
+                  </h4>
+                  <p class="card-text">
+                    <span th:text="${article.content}"></span>
+                  </p>
+                </div>
+                <div class="card-footer">
+                  Posté par
+                  <span th:text="${article.user.username}"></span> le
+                  <span th:text="${article.date}"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Catégories</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <ul
+                    class="list-unstyled mb-0"
+                    th:each="category: ${categories}"
+                  >
+                    <li>
+                      <a
+                        th:href="'/category/'+${category.id}+'/articles'"
+                        th:text="${category.name}"
+                      ></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <ul th:each="article: ${articles}">
+      <li><span th:text="${article.category.name}"></span></li>
+      <li><span th:text="${article.content}"></span></li>
+      <li><span th:text="${article.date}"></span></li>
+    </ul> -->
+  </body>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</html>

@@ -54,8 +54,6 @@ public class WebClientController {
 
 	@GetMapping("/navbar")
 	public String getNavbar(Model model) {
-		Iterable<Category> categories = categoryProxy.getCategory();
-		model.addAttribute("categories", categories);
 		return "navbar.html";
 	}
     
@@ -69,9 +67,34 @@ public class WebClientController {
     	
 		return "article";
 	}
+
+	@GetMapping("/category/{id}/articles")
+	public String getArticleByCategory(@PathVariable("id") int id, Model model) {
+    	Iterable<Article> articles = articleProxy.getArticleByCategory(id);
+		model.addAttribute("articles", articles);
+
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories);
+    	
+		return "articlesByCategory";
+	}
+
+	@GetMapping("/add/article")
+	public String addArticle(Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories);
+
+		Article article = new Article();
+		model.addAttribute("article", article);
+		
+		return "addArticle";
+	}
     
     @GetMapping("/signup")
 	public String createUser(Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories);
+
 		User user = new User();
 		model.addAttribute("user", user)
 		.addAttribute("error", this.getError());
@@ -87,7 +110,7 @@ public class WebClientController {
     		return new ModelAndView("redirect:/");
     	}
     	this.setError("vos 2 mot de passes ne sont pas identique");
-    	return new ModelAndView("redirect:/signup");
+    	return new ModelAndView("redirect:/");
 	}
 
 	public String getError() {

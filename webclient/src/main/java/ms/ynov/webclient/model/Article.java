@@ -15,6 +15,8 @@ public class Article {
 
 	private Iterable<Comment> comments;
 
+	private Iterable<Category> categories;
+
 	public Integer getId() {
 		return id;
 	}

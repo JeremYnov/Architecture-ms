@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" th:action="@{/save/article}" th:object="${article}">
+
+        <label>content</label>
+        <input type="text" th:field="*{content}" required />
+        
+        <label>date</label>
+        <input type="password" th:field="*{date}" required/>
+    
+        <select th:field="*{category.name}">
+            <option th:each="cat: ${categories}"><span th:text="${cat.name}"></span></option>
+        </select>
+        
+        <input type="submit" value="Valider"/>
+</body>
+</html>
