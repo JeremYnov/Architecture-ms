@@ -46,14 +46,26 @@ public class WebClientController {
 	}
 
 	@GetMapping("/")
-	public String getHomePage() {
+	public String getHomePage(Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories);
 		return "homePage";
+	}
+
+	@GetMapping("/navbar")
+	public String getNavbar(Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories);
+		return "navbar.html";
 	}
     
     @GetMapping("/article/{id}")
 	public String getArticlePage(@PathVariable("id") int id, Model model) {
     	Article article = articleProxy.getArticle(id);
-    	model.addAttribute("article", article);
+		model.addAttribute("article", article);
+		
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories);
     	
 		return "article";
 	}

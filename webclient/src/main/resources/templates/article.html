@@ -1,21 +1,159 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-    <div th:text="${article.id}"></div>
-    <div th:text="${article.date}"></div>
-    <div th:text="${article.content}"></div>
-    <div th:text="${article.category.id}"></div>
-    <div th:text="${article.category.name}"></div>
-    <div th:text="${article.user.id}"></div>
-    <div th:text="${article.user.username}"></div>
-    <div th:each="comment: ${article.comments}">
-        <span th:text="${comment.content}"></span>
-        <span th:text="${comment.date}"></span>
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Article</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Blog Java</a>
+      <!-- <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <div class="collapse navbar-collapse justify-content-between" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/user">Home</a>
+          <a class="nav-item nav-link active" href="/category">Features</a>
+          <a class="nav-item nav-link active" href="#">Pricing</a>
+        </div>
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/user">Home</a>
+          <a class="nav-item nav-link active" href="/category">Features</a>
+          <a class="nav-item nav-link active" href="#">Pricing</a>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <h1 class="mt-4">Titre du post numéro <span th:text="${article.id}"></span></h1>
+
+          <hr />
+
+          <p>
+            Posté par <span th:text="${article.user.username}"></span> le
+            <span th:text="${article.date}"></span>
+          </p>
+
+          <hr />
+
+          <img
+            class="img-fluid rounded"
+            src="http://placehold.it/900x300"
+            alt=""
+          />
+
+          <hr />
+
+          <p class="lead" th:text="${article.content}"></p>
+
+          <!-- <blockquote class="blockquote">
+            <p class="mb-0">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+              posuere erat a ante.
+            </p>
+            <footer class="blockquote-footer">
+              Someone famous in
+              <cite title="Source Title">Source Title</cite>
+            </footer>
+          </blockquote> -->
+          <hr />
+
+          <div class="card my-4">
+            <h5 class="card-header">Commenter l'article :</h5>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+              </form>
+            </div>
+          </div>
+
+          <div class="comment-container" th:each="comment: ${article.comments}">
+            <div class="media mb-4">
+              <img
+                class="d-flex mr-3 rounded-circle"
+                src="http://placehold.it/50x50"
+                alt=""
+              />
+              <div class="media-body">
+                <h5 class="mt-0">
+                  Username le <span th:text="${comment.date}"></span>
+                </h5>
+                <span th:text="${comment.content}"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card my-4">
+            <h5 class="card-header">Catégories</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <ul class="list-unstyled mb-0" th:each="category: ${categories}">
+                    <li>
+                      <a href="#" th:text="${category.name}"></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
-</body>
+    <!-- <div>ID article : <span th:text="${article.id}"></span></div> -->
+
+    <!-- <div>Date article : <span th:text="${article.date}"></span></div> -->
+
+    <!-- <div>Article content : <span th:text="${article.content}"></span></div> -->
+
+    <!-- <div>Article category ID : <span th:text="${article.category.id}"></span></div> -->
+
+    <div>
+      Article category name : <span th:text="${article.category.name}"></span>
+    </div>
+
+    <!-- <div>Article user id : <span th:text="${article.user.id}"></span></div> -->
+
+    <!-- <div>
+      Article user username : <span th:text="${article.user.username}"></span>
+    </div> -->
+
+    <!-- <div>
+      Article comment :
+      <span th:each="comment: ${article.comments}">
+        <span th:text="${comment.content}"></span>
+        <span th:text="${comment.date}"></span>
+      </span>
+    </div> -->
+
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">
+          Copyright &copy; David DA SILVA TEIXEIRA, Louis ARDILLY & Jérémy
+          RICHARD
+        </p>
+      </div>
+    </footer>
+  </body>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>
