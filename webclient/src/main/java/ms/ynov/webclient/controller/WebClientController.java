@@ -16,10 +16,15 @@ import ms.ynov.webclient.repository.ArticleProxy;
 import ms.ynov.webclient.repository.CategoryProxy;
 import ms.ynov.webclient.repository.UserProxy;
 
+
 @Controller
 public class WebClientController {
 	
 	private String error = null;
+	
+	private User session = null;
+	
+	private Boolean isConnected = false;
 	
     @Autowired
     private UserProxy userProxy;
@@ -48,8 +53,19 @@ public class WebClientController {
 	@GetMapping("/")
 	public String getHomePage(Model model) {
 		Iterable<Category> categories = categoryProxy.getCategory();
-		model.addAttribute("categories", categories);
+		model.addAttribute("categories", categories)
+		.addAttribute("isConnected", this.isConnected);
 		return "homePage";
+	}
+	
+	@GetMapping("/formLogin")
+	public String login(Model model) {
+		User user = new User();
+		model.addAttribute("user", user)
+		.addAttribute("error", this.getError());
+		
+		this.setError(null);
+		return "login";
 	}
 
 	@GetMapping("/navbar")
@@ -101,6 +117,30 @@ public class WebClientController {
 		
 		this.setError(null);
 		return "signup";
+	}
+
+
+	@PostMapping("/login")
+	public ModelAndView loginUser(@ModelAttribute User user, Model model) {
+		User auth = userProxy.loginUser(user);
+		if (auth != null) {
+			
+			this.session = auth;
+			this.isConnected = true;
+			return new ModelAndView("redirect:/");
+			
+		}
+		this.setError("error d'authentification");
+		return new ModelAndView("redirect:/formLogin");
+
+	}
+	
+	@GetMapping("/logout")
+	public ModelAndView logout() {
+		this.session = null;
+		this.isConnected = false;
+
+		return new ModelAndView("redirect:/");
 	}
     
     @PostMapping("/save/user")

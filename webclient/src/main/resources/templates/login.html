@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<span th:if="${error != null}">
+        <span th:text="${error}"></span>
+      </span>
+      
+    <form method="post" th:action="@{/login}" th:object="${user}">
+        <input
+          type="email"
+          name="mail"
+          class="form__field"
+          placeholder="Adresse mail"
+          th:field="*{mail}"
+          required
+        />
+   
+          <input
+            type="password"
+            name="password"
+            class="form__field"
+            placeholder="Mot de passe"
+            th:field="*{password}"
+            required
+          />
+      <div class="submit-btn-container">
+        <button type="submit" class="submit-btn">Créer mon compte</button>
+      </div>
+    </form>
+</body>
+</html>

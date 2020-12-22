@@ -19,7 +19,7 @@
             >Home <span class="sr-only">(current)</span></a
           >
         </li>
-        <li class="nav-item active">
+        <li class="nav-item active" th:if="${isConnected}">
           <a class="nav-link" href="#">Créer un article</a>
         </li>
         <li class="nav-item active dropdown">
@@ -41,18 +41,22 @@
               ></a>
             </div>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/category"
-              >Ajouter une catégorie</a
+            <a class="dropdown-item" href="/category" th:if="${isConnected}">
+            Ajouter une catégorie
+            </a
             >
           </div>
         </li>
       </ul>
       <ul class="navbar-nav my-2 my-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="/signup">Inscription</a>
+        <li class="nav-item active" th:if="${!isConnected}">
+          <a class="nav-link" href="/signup" >Inscription</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Connexion</a>
+        <li class="nav-item active" th:if="${!isConnected}">
+          <a class="nav-link" href="/formLogin">Connexion</a>
+        </li>
+        <li class="nav-item active" th:if="${isConnected}">
+          <a class="nav-link" href="/logout" >D�connexion</a>
         </li>
       </ul>
     </div>
