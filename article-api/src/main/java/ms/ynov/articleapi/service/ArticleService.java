@@ -65,8 +65,16 @@ public class ArticleService {
 		articleRepository.deleteById(id);
 	}
 	
-	public Article updateArticle(int id, Article article) {
+	public Article updateArticle(int id, ArticleW articleW) {
 		Article currentArticle = articleRepository.findById(id).get();
+		
+		Article article = new Article();
+		article.setCategory(Integer.parseInt(articleW.getIdCategory()));
+		article.setUser(articleW.getIdUser());
+		article.setContent(articleW.getContent());
+		java.sql.Date dateNow = new java.sql.Date(Calendar.getInstance().getTime().getTime()); 
+		article.setDate(dateNow);
+		
 		
 		Integer category = article.getCategory();
 		if(category != null) {

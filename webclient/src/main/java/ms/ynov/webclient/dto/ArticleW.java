@@ -3,6 +3,8 @@ package ms.ynov.webclient.dto;
 import java.sql.Date;
 
 public class ArticleW {
+	
+	private Integer id;
 
 	private Date date;
 
@@ -42,5 +44,13 @@ public class ArticleW {
 
 	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 }

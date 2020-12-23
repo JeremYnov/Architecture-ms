@@ -81,10 +81,11 @@ public class WebClientController {
 	public String getArticlePage(@PathVariable("id") int id, Model model) {
 		Iterable<Category> categories = categoryProxy.getCategory();
 		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
-
+		if(this.isConnected) {
+			model.addAttribute("sessionId", this.session.getId());
+		}
     	Article article = articleProxy.getArticle(id);
 		model.addAttribute("article", article);
-    	
 		return "article";
 	}
 
@@ -95,7 +96,7 @@ public class WebClientController {
 
     	Iterable<Article> articles = articleProxy.getArticleByCategory(id);
 		model.addAttribute("articles", articles).addAttribute("isConnected", this.isConnected);
-    	
+		
 		return "articlesByCategory";
 	}
 
@@ -109,6 +110,20 @@ public class WebClientController {
 		
 		return "addArticle";
 	}
+	
+	@GetMapping("/modify/article/{id}")
+	public String modifyArticle(@PathVariable("id") int id, Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		Article article = articleProxy.getArticle(id);
+		ArticleW articleW = new ArticleW();
+		articleW.setId(id);
+		articleW.setContent(article.getContent());
+		articleW.setIdCategory(String.valueOf(article.getCategory().getId()));
+		System.out.println(articleW.getId());
+		model.addAttribute("article", articleW).addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
+		return "modifyArticle";
+	}
+	
     
     @GetMapping("/signup")
 	public String createUser(Model model) {
@@ -162,8 +177,13 @@ public class WebClientController {
     
     @PostMapping("/save/article")
 	public ModelAndView saveArticle(@ModelAttribute ArticleW articleW) {
-    	articleW.setIdUser(this.session.getId());
-    	articleProxy.createArticle(articleW);
+    	if(articleW.getId() != null) {
+			articleProxy.updateArticle(articleW);
+		}else {
+			articleW.setIdUser(this.session.getId());
+	    	articleProxy.createArticle(articleW);
+		}
+    	
     	return new ModelAndView("redirect:/");
 	}
 

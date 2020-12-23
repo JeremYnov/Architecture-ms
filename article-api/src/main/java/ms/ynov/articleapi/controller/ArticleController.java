@@ -51,8 +51,8 @@ public class ArticleController {
 	
 	// Modification d'une categorie
 	@PutMapping("/article/update/{id}")
-	public Article updateArticle(@PathVariable("id") int id, @RequestBody Article article) {
-		article = articleService.updateArticle(id, article);
+	public Article updateArticle(@PathVariable("id") int id, @RequestBody ArticleW articleW) {
+		Article article = articleService.updateArticle(id, articleW);
 		return article;
 	}
 	
