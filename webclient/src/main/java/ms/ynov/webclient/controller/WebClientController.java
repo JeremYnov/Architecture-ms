@@ -38,14 +38,14 @@ public class WebClientController {
     @GetMapping("/category")
 	public String getCategories(Model model) {
 		Iterable<Category> categories = categoryProxy.getCategory();
-		model.addAttribute("categories", categories);
+		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
 		return "listCategory";
 	}
 
     @GetMapping("/user")
 	public String getUserPage(Model model) {
 		Iterable<User> users = userProxy.getUsers();
-        model.addAttribute("users", users);
+        model.addAttribute("users", users).addAttribute("isConnected", this.isConnected);
         
 		return "user";
 	}
@@ -60,9 +60,12 @@ public class WebClientController {
 	
 	@GetMapping("/formLogin")
 	public String login(Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories);
+
 		User user = new User();
 		model.addAttribute("user", user)
-		.addAttribute("error", this.getError());
+		.addAttribute("error", this.getError()).addAttribute("isConnected", this.isConnected);
 		
 		this.setError(null);
 		return "login";
@@ -75,22 +78,22 @@ public class WebClientController {
     
     @GetMapping("/article/{id}")
 	public String getArticlePage(@PathVariable("id") int id, Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
+
     	Article article = articleProxy.getArticle(id);
 		model.addAttribute("article", article);
-		
-		Iterable<Category> categories = categoryProxy.getCategory();
-		model.addAttribute("categories", categories);
     	
 		return "article";
 	}
 
 	@GetMapping("/category/{id}/articles")
 	public String getArticleByCategory(@PathVariable("id") int id, Model model) {
-    	Iterable<Article> articles = articleProxy.getArticleByCategory(id);
-		model.addAttribute("articles", articles);
-
 		Iterable<Category> categories = categoryProxy.getCategory();
 		model.addAttribute("categories", categories);
+
+    	Iterable<Article> articles = articleProxy.getArticleByCategory(id);
+		model.addAttribute("articles", articles).addAttribute("isConnected", this.isConnected);
     	
 		return "articlesByCategory";
 	}
@@ -98,7 +101,7 @@ public class WebClientController {
 	@GetMapping("/add/article")
 	public String addArticle(Model model) {
 		Iterable<Category> categories = categoryProxy.getCategory();
-		model.addAttribute("categories", categories);
+		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
 
 		Article article = new Article();
 		model.addAttribute("article", article);
@@ -109,7 +112,7 @@ public class WebClientController {
     @GetMapping("/signup")
 	public String createUser(Model model) {
 		Iterable<Category> categories = categoryProxy.getCategory();
-		model.addAttribute("categories", categories);
+		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
 
 		User user = new User();
 		model.addAttribute("user", user)
@@ -122,6 +125,9 @@ public class WebClientController {
 
 	@PostMapping("/login")
 	public ModelAndView loginUser(@ModelAttribute User user, Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
+
 		User auth = userProxy.loginUser(user);
 		if (auth != null) {
 			

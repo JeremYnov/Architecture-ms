@@ -14,13 +14,8 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#"
-            >Home <span class="sr-only">(current)</span></a
-          >
-        </li>
         <li class="nav-item active" th:if="${isConnected}">
-          <a class="nav-link" href="#">Créer un article</a>
+          <a class="nav-link" href="/add/article">Créer un article</a>
         </li>
         <li class="nav-item active dropdown">
           <a
@@ -40,7 +35,7 @@
                 ><span th:text="${category.name}"></span
               ></a>
             </div>
-            <div class="dropdown-divider"></div>
+            <div class="dropdown-divider"  th:if="${isConnected}"></div>
             <a class="dropdown-item" href="/category" th:if="${isConnected}">
             Ajouter une catégorie
             </a
@@ -56,7 +51,7 @@
           <a class="nav-link" href="/formLogin">Connexion</a>
         </li>
         <li class="nav-item active" th:if="${isConnected}">
-          <a class="nav-link" href="/logout" >D�connexion</a>
+          <a class="nav-link" href="/logout" >Déconnexion</a>
         </li>
       </ul>
     </div>
