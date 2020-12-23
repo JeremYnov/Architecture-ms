@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import ms.ynov.articleapi.dto.ArticleR;
 import ms.ynov.articleapi.dto.ArticleTransformer;
+import ms.ynov.articleapi.dto.ArticleW;
 import ms.ynov.articleapi.model.Article;
 import ms.ynov.articleapi.repository.ArticleRepository;
 
@@ -46,7 +47,12 @@ public class ArticleService {
 		return listArticle;
 	}
 	
-	public Article createArticle(Article article) {
+	public Article createArticle(ArticleW articleW) {
+		Article article = new Article();
+		article.setCategory(Integer.parseInt(articleW.getIdCategory()));
+		article.setUser(articleW.getIdUser());
+		article.setContent(articleW.getContent());
+		article.setDate(articleW.getDate());
 		article = articleRepository.save(article);
 		return article;
 	}

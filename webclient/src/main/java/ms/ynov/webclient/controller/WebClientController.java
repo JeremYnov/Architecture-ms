@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ms.ynov.webclient.dto.ArticleW;
 import ms.ynov.webclient.model.Article;
 import ms.ynov.webclient.model.Category;
 import ms.ynov.webclient.model.User;
@@ -103,7 +104,7 @@ public class WebClientController {
 		Iterable<Category> categories = categoryProxy.getCategory();
 		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
 
-		Article article = new Article();
+		ArticleW article = new ArticleW();
 		model.addAttribute("article", article);
 		
 		return "addArticle";
@@ -156,6 +157,13 @@ public class WebClientController {
     		return new ModelAndView("redirect:/");
     	}
     	this.setError("vos 2 mot de passes ne sont pas identique");
+    	return new ModelAndView("redirect:/");
+	}
+    
+    @PostMapping("/save/article")
+	public ModelAndView saveArticle(@ModelAttribute ArticleW articleW) {
+    	articleW.setIdUser(this.session.getId());
+    	articleProxy.createArticle(articleW);
     	return new ModelAndView("redirect:/");
 	}
 

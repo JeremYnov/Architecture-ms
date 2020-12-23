@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhml" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,10 +19,10 @@
         <input type="text" th:field="*{content}" required />
         
         <label>date</label>
-        <input type="password" th:field="*{date}" required/>
+        <input type="date" th:field="*{date}" required/>
     
-        <select th:field="*{category.name}">
-            <option th:each="cat: ${categories}"><span th:text="${cat.name}"></span></option>
+        <select th:field="*{idCategory}">
+            <option th:value="${cat.id}" th:each="cat: ${categories}"><span th:text="${cat.name}"></span></option>
         </select>
         
         <input type="submit" value="Valider"/>

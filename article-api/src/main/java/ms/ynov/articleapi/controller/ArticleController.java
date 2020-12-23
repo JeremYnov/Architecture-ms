@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import ms.ynov.articleapi.dto.ArticleR;
+import ms.ynov.articleapi.dto.ArticleW;
 import ms.ynov.articleapi.model.Article;
 import ms.ynov.articleapi.service.ArticleService;
 
@@ -37,8 +38,8 @@ public class ArticleController {
 	
 	//	Creation d'un article
 	@PostMapping("/article/create")
-	public Article createArticle(@RequestBody Article article) {
-		article = articleService.createArticle(article);
+	public Article createArticle(@RequestBody ArticleW articleW) {
+		Article article = articleService.createArticle(articleW);
 		return article;
 	}
 	
