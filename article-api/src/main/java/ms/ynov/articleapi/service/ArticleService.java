@@ -1,6 +1,9 @@
 package ms.ynov.articleapi.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +55,8 @@ public class ArticleService {
 		article.setCategory(Integer.parseInt(articleW.getIdCategory()));
 		article.setUser(articleW.getIdUser());
 		article.setContent(articleW.getContent());
-		article.setDate(articleW.getDate());
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime()); 
+		article.setDate(date);
 		article = articleRepository.save(article);
 		return article;
 	}

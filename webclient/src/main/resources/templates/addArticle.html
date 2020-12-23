@@ -18,8 +18,8 @@
         <label>content</label>
         <input type="text" th:field="*{content}" required />
         
-        <label>date</label>
-        <input type="date" th:field="*{date}" required/>
+        <!-- <label>date</label>
+        <input type="date" th:field="*{date}" required/> -->
     
         <select th:field="*{idCategory}">
             <option th:value="${cat.id}" th:each="cat: ${categories}"><span th:text="${cat.name}"></span></option>
