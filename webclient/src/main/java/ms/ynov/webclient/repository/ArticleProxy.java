@@ -52,4 +52,13 @@ public class ArticleProxy extends GenericProxy {
 		
 		return response.getBody();
 	}
+	
+	public void deleteArticle(Integer id) {
+		String deleteArticleUrl = this.props.getApiUrl() + "/article/delete/" + id;
+
+		
+		restTemplate.exchange(
+			deleteArticleUrl, HttpMethod.DELETE, null, 
+			Void.class);
+	}
 }

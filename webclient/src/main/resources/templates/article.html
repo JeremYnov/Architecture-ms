@@ -22,7 +22,10 @@
           <a
           	 th:if="${isConnected && sessionId == article.user.id}"
              th:href="'/modify/article/'+${article.id}"
-           >modifier</a>
+           >Modifier</a>
+           
+           <a th:if="${isConnected && sessionId == article.user.id}"
+            th:href="@{/delete/article/{id}(id=${article.id})}">Supprimer</a>
           <hr />
 
           <p>

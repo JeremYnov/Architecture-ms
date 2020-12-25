@@ -124,6 +124,12 @@ public class WebClientController {
 		return "modifyArticle";
 	}
 	
+	@GetMapping("/delete/article/{id}")
+	public ModelAndView deleteUser(@PathVariable("id") int id) {
+		articleProxy.deleteArticle(id);
+		return new ModelAndView("redirect:/");
+	}
+	
     
     @GetMapping("/signup")
 	public String createUser(Model model) {
