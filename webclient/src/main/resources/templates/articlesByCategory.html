@@ -17,12 +17,13 @@
       <div class="row">
         <!-- Blog Entries Column -->
         <div class="col-md-8">
-          <h1 class="my-4"><span th:text="${articles[0].category.name}"></span> : Articles</h1>
-
+          <h1 th:if="${articles != null}" class="my-4"><span th:text="${articles[0].category.name}"></span> : Articles</h1>
+			<h1 th:if="${articles == null}" class="my-4"> Pas encore d'article sur cette category</h1>
           <!-- Blog Post -->
           <div class="row">
             <div
               class="posts-container col mb-4"
+              th:if="${articles != null}"
               th:each="article: ${articles}"
             >
               <div class="card h-100">

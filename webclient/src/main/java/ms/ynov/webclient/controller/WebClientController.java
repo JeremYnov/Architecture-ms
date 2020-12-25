@@ -42,6 +42,31 @@ public class WebClientController {
 		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
 		return "listCategory";
 	}
+    
+    @GetMapping("/create/category")
+	public String addCategory(Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
+
+		Category category = new Category();
+		model.addAttribute("category", category);
+		
+		return "addCategory";
+	}
+    
+    @GetMapping("/modify/category/{id}")
+	public String modifyCategory(@PathVariable("id") int id, Model model) {
+		Iterable<Category> categories = categoryProxy.getCategory();
+		Category category = categoryProxy.getCategory(id);
+		model.addAttribute("category", category).addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
+		return "modifyCategory";
+	}
+    
+    @GetMapping("/delete/category/{id}")
+	public ModelAndView deleteCategory(@PathVariable("id") int id) {
+		categoryProxy.deleteCategory(id);
+		return new ModelAndView("redirect:/");
+	}
 
     @GetMapping("/user")
 	public String getUserPage(Model model) {
@@ -95,6 +120,15 @@ public class WebClientController {
 		model.addAttribute("categories", categories);
 
     	Iterable<Article> articles = articleProxy.getArticleByCategory(id);
+    	int count = 0;
+    	while (articles.iterator().hasNext()) {
+    		count += 1;
+    		if(count == 1) { break; }
+    	}
+    	if (count == 0) {
+    		articles = null;
+    	}
+    	
 		model.addAttribute("articles", articles).addAttribute("isConnected", this.isConnected);
 		
 		return "articlesByCategory";
@@ -190,6 +224,16 @@ public class WebClientController {
 	    	articleProxy.createArticle(articleW);
 		}
     	
+    	return new ModelAndView("redirect:/");
+	}
+    
+    @PostMapping("/save/category")
+	public ModelAndView saveCategory(@ModelAttribute Category category) {
+    	if(category.getId() != null) {
+			categoryProxy.updateCategory(category);
+		}else {
+			categoryProxy.createCategory(category);
+		}
     	return new ModelAndView("redirect:/");
 	}
 

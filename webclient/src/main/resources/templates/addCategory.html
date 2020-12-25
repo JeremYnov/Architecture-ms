@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<header th:insert="fragments/navbar.html :: nav"></header>
+    <form method="post" th:action="@{/save/category}" th:object="${category}">
+
+        <label>nom</label>
+        <input type="text" th:field="*{name}" required />
+        
+        <input type="submit" value="Valider"/>
+     </form>
+</body>
+</html>

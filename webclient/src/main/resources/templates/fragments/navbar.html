@@ -34,9 +34,15 @@
               <a th:href="'/category/' + ${category.id}+'/articles'" class="dropdown-item"
                 ><span th:text="${category.name}"></span
               ></a>
+              <a th:if="${isConnected}" th:href="'/modify/category/' + ${category.id}" class="dropdown-item"
+                >Modifier
+              </a>
+              <a th:if="${isConnected}" th:href="'/delete/category/' + ${category.id}" class="dropdown-item"
+                >Supprimer
+              </a>
             </div>
             <div class="dropdown-divider"  th:if="${isConnected}"></div>
-            <a class="dropdown-item" href="/category" th:if="${isConnected}">
+            <a class="dropdown-item" href="/create/category" th:if="${isConnected}">
             Ajouter une catégorie
             </a
             >
