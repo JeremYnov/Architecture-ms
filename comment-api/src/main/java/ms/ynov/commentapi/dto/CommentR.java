@@ -13,6 +13,8 @@ public class CommentR {
 	private Date date;
 	
 	private String content;
+	
+	private Integer article;
 
 	public Integer getId() {
 		return id;
@@ -44,5 +46,13 @@ public class CommentR {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public Integer getArticle() {
+		return article;
+	}
+
+	public void setArticle(Integer article) {
+		this.article = article;
 	}
 }

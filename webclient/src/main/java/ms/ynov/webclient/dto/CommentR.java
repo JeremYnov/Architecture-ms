@@ -1,4 +1,4 @@
-package ms.ynov.webclient.model;
+package ms.ynov.webclient.dto;
 
 import java.sql.Date;
 

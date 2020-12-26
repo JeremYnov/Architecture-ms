@@ -19,6 +19,7 @@ public class CommentTransformer {
 		commentR.setId(comment.getId());
 		commentR.setDate(comment.getDate());
 		commentR.setContent(comment.getContent());
+		commentR.setArticle(comment.getArticle());
 		
 		User user = userProxy.getUser(comment.getUser());
 		commentR.setUser(user);

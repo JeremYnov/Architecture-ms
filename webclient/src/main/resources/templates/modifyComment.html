@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method="post" th:action="@{/save/comment}" th:object="${comment}">
+                <div class="form-group">
+                  <textarea th:field="*{content}" class="form-control" rows="3"></textarea>
+                </div>
+
+                <input type="hidden" th:value="${comment.id}" id="id" name="id">
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+              </form>
+</body>
+</html>

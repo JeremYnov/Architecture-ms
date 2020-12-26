@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import ms.ynov.webclient.dto.ArticleW;
+import ms.ynov.webclient.dto.CommentR;
 import ms.ynov.webclient.model.Article;
 import ms.ynov.webclient.model.Category;
 import ms.ynov.webclient.model.Comment;
-import ms.ynov.webclient.model.CommentR;
 import ms.ynov.webclient.model.User;
 import ms.ynov.webclient.repository.ArticleProxy;
 import ms.ynov.webclient.repository.CategoryProxy;
@@ -231,10 +231,38 @@ public class WebClientController {
     
     @PostMapping("/save/comment")
 	public ModelAndView saveComment(@ModelAttribute CommentR comment) {
-    	commentProxy.createComment(comment, this.session);
-    	
+		
+    	if(comment.getId() != null) {
+			commentProxy.updateComment(comment);
+		}else {
+			commentProxy.createComment(comment, this.session);
+		}
     	return new ModelAndView("redirect:/");
 	}
+
+	@GetMapping("/modify/comment/{id}")
+	public String modifyComment(@PathVariable("id") int id, Model model) {	
+		Comment comment = commentProxy.getComment(id);
+
+		CommentR newComment = new CommentR();
+		
+		newComment.setId(comment.getId());
+		newComment.setContent(comment.getContent());
+		newComment.setDate(comment.getDate());
+		newComment.setUser(comment.getUser().getId());
+		newComment.setArticle(comment.getArticle());
+
+		model.addAttribute("comment", newComment).addAttribute("isConnected", this.isConnected);
+		
+		return "modifyComment";
+	}
+	
+	@GetMapping("/delete/comment/{id}")
+	public ModelAndView deleteComment(@PathVariable("id") int id) {
+		commentProxy.deleteComment(id);
+		return new ModelAndView("redirect:/");
+	}
+
     @PostMapping("/save/article")
 	public ModelAndView saveArticle(@ModelAttribute ArticleW articleW) {
     	if(articleW.getId() != null) {

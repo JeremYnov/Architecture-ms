@@ -71,6 +71,14 @@
                   <span th:text="${comment.user.username}"></span> le
                   <span th:text="${comment.date}"></span>
                 </h5>
+               <a
+          	 th:if="${isConnected && sessionId == comment.user.id}"
+             th:href="'/modify/comment/'+${comment.id}"
+           >Modifier</a>
+           
+              <a th:if="${isConnected && sessionId == comment.user.id}"
+               th:href="@{/delete/comment/{id}(id=${comment.id})}">Supprimer</a>
+
                 <span th:text="${comment.content}"></span>
               </div>
             </div>
