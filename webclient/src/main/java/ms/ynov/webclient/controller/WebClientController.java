@@ -242,6 +242,8 @@ public class WebClientController {
 
 	@GetMapping("/modify/comment/{id}")
 	public String modifyComment(@PathVariable("id") int id, Model model) {	
+		Iterable<Category> categories = categoryProxy.getCategory();
+
 		Comment comment = commentProxy.getComment(id);
 
 		CommentR newComment = new CommentR();
@@ -252,7 +254,7 @@ public class WebClientController {
 		newComment.setUser(comment.getUser().getId());
 		newComment.setArticle(comment.getArticle());
 
-		model.addAttribute("comment", newComment).addAttribute("isConnected", this.isConnected);
+		model.addAttribute("comment", newComment).addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
 		
 		return "modifyComment";
 	}
