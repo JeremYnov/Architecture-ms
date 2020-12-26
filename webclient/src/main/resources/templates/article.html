@@ -39,13 +39,14 @@
           <p class="lead" th:text="${article.content}"></p>
           <hr />
 
-          <div class="card my-4">
+          <div class="card my-4" th:if="${isConnected}">
             <h5 class="card-header">Commenter l'article :</h5>
             <div class="card-body">
-              <form>
+              <form method="post" th:action="@{/save/comment}" th:object="${comment}">
                 <div class="form-group">
-                  <textarea class="form-control" rows="3"></textarea>
+                  <textarea th:field="*{content}" class="form-control" rows="3"></textarea>
                 </div>
+                <input type="hidden" th:value="${article.id}" id="article" name="article">
                 <button type="submit" class="btn btn-primary">Envoyer</button>
               </form>
             </div>

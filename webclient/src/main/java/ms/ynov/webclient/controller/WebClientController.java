@@ -11,9 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ms.ynov.webclient.model.Article;
 import ms.ynov.webclient.model.Category;
+import ms.ynov.webclient.model.Comment;
+import ms.ynov.webclient.model.CommentR;
 import ms.ynov.webclient.model.User;
 import ms.ynov.webclient.repository.ArticleProxy;
 import ms.ynov.webclient.repository.CategoryProxy;
+import ms.ynov.webclient.repository.CommentProxy;
 import ms.ynov.webclient.repository.UserProxy;
 
 
@@ -21,13 +24,16 @@ import ms.ynov.webclient.repository.UserProxy;
 public class WebClientController {
 	
 	private String error = null;
-	
+
 	private User session = null;
 	
 	private Boolean isConnected = false;
 	
     @Autowired
     private UserProxy userProxy;
+    
+    @Autowired
+    private CommentProxy commentProxy;
 
     @Autowired
     private CategoryProxy categoryProxy;
@@ -83,6 +89,9 @@ public class WebClientController {
 
     	Article article = articleProxy.getArticle(id);
 		model.addAttribute("article", article);
+
+		CommentR comment = new CommentR();
+		model.addAttribute("comment", comment);
     	
 		return "article";
 	}
@@ -94,7 +103,7 @@ public class WebClientController {
 
     	Iterable<Article> articles = articleProxy.getArticleByCategory(id);
 		model.addAttribute("articles", articles).addAttribute("isConnected", this.isConnected);
-    	
+
 		return "articlesByCategory";
 	}
 
@@ -130,9 +139,10 @@ public class WebClientController {
 
 		User auth = userProxy.loginUser(user);
 		if (auth != null) {
-			
+
 			this.session = auth;
 			this.isConnected = true;
+			
 			return new ModelAndView("redirect:/");
 			
 		}
@@ -143,6 +153,7 @@ public class WebClientController {
 	
 	@GetMapping("/logout")
 	public ModelAndView logout() {
+		
 		this.session = null;
 		this.isConnected = false;
 
@@ -156,6 +167,13 @@ public class WebClientController {
     		return new ModelAndView("redirect:/");
     	}
     	this.setError("vos 2 mot de passes ne sont pas identique");
+    	return new ModelAndView("redirect:/");
+	}
+    
+    @PostMapping("/save/comment")
+	public ModelAndView saveComment(@ModelAttribute CommentR comment) {
+    	commentProxy.createComment(comment, this.session);
+    	
     	return new ModelAndView("redirect:/");
 	}
 
