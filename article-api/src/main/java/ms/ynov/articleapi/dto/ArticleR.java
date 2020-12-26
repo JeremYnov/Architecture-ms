@@ -2,6 +2,10 @@ package ms.ynov.articleapi.dto;
 
 import java.sql.Date;
 
+import ms.ynov.articleapi.model.Category;
+import ms.ynov.articleapi.model.Comment;
+import ms.ynov.articleapi.model.User;
+
 public class ArticleR {
 	 private Integer id;
 

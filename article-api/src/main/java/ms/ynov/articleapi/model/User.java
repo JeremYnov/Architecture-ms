@@ -1,4 +1,4 @@
-package ms.ynov.articleapi.dto;
+package ms.ynov.articleapi.model;
 
 public class User {
 	private Integer id;

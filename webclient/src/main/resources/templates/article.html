@@ -18,7 +18,14 @@
           <h1 class="mt-4">
             Titre du post numéro <span th:text="${article.id}"></span>
           </h1>
-
+          
+          <a
+          	 th:if="${isConnected && sessionId == article.user.id}"
+             th:href="'/modify/article/'+${article.id}"
+           >Modifier</a>
+           
+           <a th:if="${isConnected && sessionId == article.user.id}"
+            th:href="@{/delete/article/{id}(id=${article.id})}">Supprimer</a>
           <hr />
 
           <p>
