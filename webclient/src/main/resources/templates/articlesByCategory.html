@@ -22,7 +22,7 @@
           <!-- Blog Post -->
           <div class="row">
             <div
-              class="posts-container col mb-4"
+              class="posts-container col-6 pb-4"
               th:if="${articles != null}"
               th:each="article: ${articles}"
             >
@@ -38,7 +38,7 @@
                     <a th:href="'/article/' + ${article.id}">Article Title</a>
                   </h4>
                   <p class="card-text">
-                    <span th:text="${article.content}"></span>
+                    Voici la description de notre article. 
                   </p>
                 </div>
                 <div class="card-footer">

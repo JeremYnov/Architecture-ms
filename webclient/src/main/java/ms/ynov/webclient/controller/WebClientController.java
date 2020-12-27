@@ -76,7 +76,7 @@ public class WebClientController {
 	}
 
     @GetMapping("/user")
-	public String getUserPage(Model model) {
+	public String getUsersPage(Model model) {
 		Iterable<User> users = userProxy.getUsers();
         model.addAttribute("users", users).addAttribute("isConnected", this.isConnected);
         
@@ -89,6 +89,15 @@ public class WebClientController {
 		model.addAttribute("categories", categories)
 		.addAttribute("isConnected", this.isConnected);
 		return "homePage";
+	}
+
+	@GetMapping("/profile")
+	public String getUserPage(Model model) {
+        Iterable<Category> categories = categoryProxy.getCategory();
+		model.addAttribute("categories", categories).addAttribute("user",this.session)
+		.addAttribute("isConnected", this.isConnected);
+		
+		return "profile";
 	}
 	
 	@GetMapping("/formLogin")
