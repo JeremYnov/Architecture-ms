@@ -14,7 +14,7 @@
     <div class="card my-4" th:if="${isConnected}">
         <h5 class="card-header">Modification de l'article :</h5>
         <div class="card-body">
-            <form method="post" th:action="@{/save/article}" th:object="${article}">
+            <form method="post" th:action="'/save/article?idArticle=' + ${article.id}" th:object="${article}">
 
                 <input type="hidden" th:field="*{id}" />
 

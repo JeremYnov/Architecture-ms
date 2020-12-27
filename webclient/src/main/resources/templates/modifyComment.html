@@ -14,7 +14,7 @@
   <div class="card my-4" th:if="${isConnected}">
     <h5 class="card-header">Modification du commentaire :</h5>
     <div class="card-body">
-      <form method="post" th:action="@{/save/comment}" th:object="${comment}">
+      <form method="post" th:action="'/save/comment?idArticle=' + ${comment.article}" th:object="${comment}">
         <div class="form-group">
           <textarea th:field="*{content}" class="form-control" rows="3"></textarea>
         </div>

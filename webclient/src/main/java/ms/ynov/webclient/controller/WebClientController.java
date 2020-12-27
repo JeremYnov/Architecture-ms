@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ms.ynov.webclient.dto.ArticleW;
@@ -165,15 +166,15 @@ public class WebClientController {
 		articleW.setId(id);
 		articleW.setContent(article.getContent());
 		articleW.setIdCategory(String.valueOf(article.getCategory().getId()));
-		System.out.println(articleW.getId());
+		
 		model.addAttribute("article", articleW).addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
 		return "modifyArticle";
 	}
 	
 	@GetMapping("/delete/article/{id}")
-	public ModelAndView deleteUser(@PathVariable("id") int id) {
+	public ModelAndView deleteUser(@PathVariable("id") Integer id, @RequestParam Integer idCategory) {
 		articleProxy.deleteArticle(id);
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/category/" + idCategory.toString() + "/articles");
 	}
 	
     
@@ -230,14 +231,14 @@ public class WebClientController {
 	}
     
     @PostMapping("/save/comment")
-	public ModelAndView saveComment(@ModelAttribute CommentR comment) {
+	public ModelAndView saveComment(@ModelAttribute CommentR comment, @RequestParam Integer idArticle) {
 		
     	if(comment.getId() != null) {
 			commentProxy.updateComment(comment);
 		}else {
 			commentProxy.createComment(comment, this.session);
 		}
-    	return new ModelAndView("redirect:/");
+    	return new ModelAndView("redirect:/article/" + idArticle.toString());
 	}
 
 	@GetMapping("/modify/comment/{id}")
@@ -260,15 +261,17 @@ public class WebClientController {
 	}
 	
 	@GetMapping("/delete/comment/{id}")
-	public ModelAndView deleteComment(@PathVariable("id") int id) {
+	public ModelAndView deleteComment(@PathVariable("id") int id, @RequestParam Integer idArticle) {
 		commentProxy.deleteComment(id);
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/article/" + idArticle.toString());
 	}
 
     @PostMapping("/save/article")
-	public ModelAndView saveArticle(@ModelAttribute ArticleW articleW) {
+	public ModelAndView saveArticle(@ModelAttribute ArticleW articleW, @RequestParam(required = false) Integer idArticle) {
     	if(articleW.getId() != null) {
 			articleProxy.updateArticle(articleW);
+
+			return new ModelAndView("redirect:/article/" + idArticle.toString());
 		}else {
 			articleW.setIdUser(this.session.getId());
 	    	articleProxy.createArticle(articleW);

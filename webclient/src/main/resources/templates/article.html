@@ -18,10 +18,10 @@
         </h1>
 
         <a th:if="${isConnected && sessionId == article.user.id}"
-          th:href="'/modify/article/'+${article.id}">Modifier</a>
+          th:href="'/modify/article/'+ ${article.id}">Modifier</a>
 
         <a th:if="${isConnected && sessionId == article.user.id}"
-          th:href="@{/delete/article/{id}(id=${article.id})}">Supprimer</a>
+          th:href="'/delete/article/' + ${article.id} + '?idCategory=' + ${article.category.id}">Supprimer</a>
         <hr />
 
         <p>
@@ -41,7 +41,7 @@
         <div class="card my-4" th:if="${isConnected}">
           <h5 class="card-header">Commenter l'article :</h5>
           <div class="card-body">
-            <form method="post" th:action="@{/save/comment}" th:object="${comment}">
+            <form method="post" th:action="'/save/comment?idArticle=' + ${article.id}" th:object="${comment}">
               <div class="form-group">
                 <textarea th:field="*{content}" class="form-control" rows="3"></textarea>
               </div>
@@ -63,7 +63,7 @@
                 th:href="'/modify/comment/'+${comment.id}">Modifier</a>
 
               <a th:if="${isConnected && sessionId == comment.user.id}"
-                th:href="@{/delete/comment/{id}(id=${comment.id})}">Supprimer</a>
+                th:href="'/delete/comment/' + ${comment.id} + '?idArticle=' + ${article.id}">Supprimer</a>
 
               <span th:text="${comment.content}"></span>
             </div>
@@ -90,31 +90,10 @@
     </div>
   </div>
 
-  <!-- <div>ID article : <span th:text="${article.id}"></span></div> -->
-
-  <!-- <div>Date article : <span th:text="${article.date}"></span></div> -->
-
-  <!-- <div>Article content : <span th:text="${article.content}"></span></div> -->
-
-  <!-- <div>Article category ID : <span th:text="${article.category.id}"></span></div> -->
-
   <div>
     Article category name : <span th:text="${article.category.name}"></span>
   </div>
 
-  <!-- <div>Article user id : <span th:text="${article.user.id}"></span></div> -->
-
-  <!-- <div>
-      Article user username : <span th:text="${article.user.username}"></span>
-    </div> -->
-
-  <!-- <div>
-      Article comment :
-      <span th:each="comment: ${article.comments}">
-        <span th:text="${comment.content}"></span>
-        <span th:text="${comment.date}"></span>
-      </span>
-    </div> -->
 
   <footer class="py-5 bg-dark">
     <div class="container">
