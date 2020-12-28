@@ -1,67 +1,81 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Blog Java</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <a class="navbar-brand" href="/">Blog Java</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active" th:if="${isConnected}">
-          <a class="nav-link" href="/add/article">Créer un article</a>
-        </li>
-        <li class="nav-item active dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Catégories
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <div th:each="category: ${categories}">
-              <a th:href="'/category/' + ${category.id}+'/articles'" class="dropdown-item"
-                ><span th:text="${category.name}"></span
-              ></a>
-              <a th:if="${isConnected}" th:href="'/modify/category/' + ${category.id}" class="dropdown-item"
-                >Modifier
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active" th:if="${isConnected}">
+        <a class="nav-link" href="/add/article">Créer un article</a>
+      </li>
+      <li class="nav-item active dropdown">
+        <div
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          style="cursor: pointer"
+        >
+          Catégories
+        </div>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div th:each="category: ${categories}" class="d-flex justify-content-between">
+            <a
+              th:href="'/category/' + ${category.id}+'/articles'"
+              class="dropdown-item"
+              ><span th:text="${category.name}"></span
+            ></a>
+            <div class="icons d-flex">
+              <a
+                th:if="${isConnected}"
+                th:href="'/modify/category/' + ${category.id}"
+                class="dropdown-item"
+                ><i class="fas fa-edit" style="color: rgb(51, 51, 196);"></i>
               </a>
-              <a th:if="${isConnected}" th:href="'/delete/category/' + ${category.id}" class="dropdown-item"
-                >Supprimer
+              <a
+                th:if="${isConnected}"
+                th:href="'/delete/category/' + ${category.id}"
+                class="dropdown-item"
+                ><i class="fas fa-trash-alt" style="color: rgb(201, 38, 38);"></i>
               </a>
             </div>
-            <div class="dropdown-divider"  th:if="${isConnected}"></div>
-            <a class="dropdown-item" href="/create/category" th:if="${isConnected}">
-            Ajouter une catégorie
-            </a
-            >
           </div>
-        </li>
-      </ul>
-      <ul class="navbar-nav my-2 my-lg-0">
-        <li class="nav-item active" th:if="${!isConnected}">
-          <a class="nav-link" href="/signup" >Inscription</a>
-        </li>
-        <li class="nav-item active" th:if="${!isConnected}">
-          <a class="nav-link" href="/formLogin">Connexion</a>
-        </li>
-        <li class="nav-item active" th:if="${isConnected}">
-          <a class="nav-link" href="/profile">Profil</a>
-        </li>
-        <li class="nav-item active" th:if="${isConnected}">
-          <a class="nav-link" href="/logout">Déconnexion</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+          <div class="dropdown-divider" th:if="${isConnected}"></div>
+          <a
+            class="dropdown-item"
+            href="/create/category"
+            th:if="${isConnected}"
+          >
+            Ajouter une catégorie
+          </a>
+        </div>
+      </li>
+    </ul>
+    <ul class="navbar-nav my-2 my-lg-0">
+      <li class="nav-item active" th:if="${!isConnected}">
+        <a class="nav-link" href="/signup">Inscription</a>
+      </li>
+      <li class="nav-item active" th:if="${!isConnected}">
+        <a class="nav-link" href="/formLogin">Connexion</a>
+      </li>
+      <li class="nav-item active" th:if="${isConnected}">
+        <a class="nav-link" href="/profile">Profil</a>
+      </li>
+      <li class="nav-item active" th:if="${isConnected}">
+        <a class="nav-link" href="/logout">Déconnexion</a>
+      </li>
+    </ul>
+  </div>
+</nav>
