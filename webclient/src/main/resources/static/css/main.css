@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.wavy{
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 56px);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wavy .wave{
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #4973ff;
+}
+
+.wavy .wave span{
+    position: absolute;
+    width: 325vh;
+    height: 325vh;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #000;
+}
+
+.wavy .wave span:nth-child(1){
+    animation: animate 5s linear infinite;
+    border-radius: 45%;
+    background: rgba(20,20,20,1);
+}
+
+.wavy .wave span:nth-child(2){
+    animation: animate 10s linear infinite;
+    border-radius: 40%;
+    background: rgba(20,20,20,0.5);
+}
+
+.wavy .wave span:nth-child(3){
+    animation: animate 15s linear infinite;
+    border-radius: 42.5%;
+    background: rgba(20,20,20,0.5);
+}
+
+@keyframes animate{
+    0%{
+        transform: translate(-50%,-75%) rotate(0deg);
+    }
+    100%{
+        transform: translate(-50%,-75%) rotate(360deg);
+    }
+}
+.wavy .wave-content{
+    text-align: center;
+}
+
+.wavy .wave-content h2{
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    font-size: 4em;
+}
+
+.wavy .wave-content h3{
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    font-size: 3.5em;
+}

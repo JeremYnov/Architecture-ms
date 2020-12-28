@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
 import ms.ynov.articleapi.config.CustomProperties;
-import ms.ynov.articleapi.dto.User;
+import ms.ynov.articleapi.model.User;
 
 
 

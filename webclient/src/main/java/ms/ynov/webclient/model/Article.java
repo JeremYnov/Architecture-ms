@@ -14,7 +14,6 @@ public class Article {
 	private String content;
 
 	private Iterable<Comment> comments;
-
 	public Integer getId() {
 		return id;
 	}
@@ -62,4 +61,5 @@ public class Article {
 	public void setComments(Iterable<Comment> comments) {
 		this.comments = comments;
 	}
+
 }

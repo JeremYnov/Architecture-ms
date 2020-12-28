@@ -10,6 +10,8 @@ public class Comment {
 	private Date date;
 
 	private String content;
+	
+	private Integer article;
 
 	public Integer getId() {
 		return id;
@@ -41,5 +43,13 @@ public class Comment {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public Integer getArticle() {
+		return article;
+	}
+
+	public void setArticle(Integer article) {
+		this.article = article;
 	}
 }

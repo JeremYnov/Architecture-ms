@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="ISO-8859-1" />
-    <title>Categories</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link th:href="@{/css/main.css}" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -11,23 +12,23 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     />
+
+    <title>Home</title>
   </head>
   <body>
     <header th:insert="fragments/navbar.html :: nav"></header>
-    <table>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="category: ${categories}">
-          <td><span th:text="${category.id}"></span></td>
-          <td><span th:text="${category.name}"></span></td>
-        </tr>
-      </tbody>
-    </table>
+
+    <section class="wavy">
+      <div class="wave">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="wave-content">
+        <h2>Blog Java</h2>
+        <h3>Architecture Micro-Services</h3>
+      </div>
+    </section>
   </body>
   <script
     src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

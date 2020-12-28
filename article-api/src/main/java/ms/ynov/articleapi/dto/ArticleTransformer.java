@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import ms.ynov.articleapi.model.Article;
+import ms.ynov.articleapi.model.Category;
+import ms.ynov.articleapi.model.Comment;
+import ms.ynov.articleapi.model.User;
 import ms.ynov.articleapi.repository.CategoryProxy;
 import ms.ynov.articleapi.repository.CommentProxy;
 import ms.ynov.articleapi.repository.UserProxy;

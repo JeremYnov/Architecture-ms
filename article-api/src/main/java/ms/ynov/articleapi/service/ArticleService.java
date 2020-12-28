@@ -1,6 +1,9 @@
 package ms.ynov.articleapi.service;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import ms.ynov.articleapi.dto.ArticleR;
 import ms.ynov.articleapi.dto.ArticleTransformer;
+import ms.ynov.articleapi.dto.ArticleW;
 import ms.ynov.articleapi.model.Article;
 import ms.ynov.articleapi.repository.ArticleRepository;
 
@@ -46,7 +50,13 @@ public class ArticleService {
 		return listArticle;
 	}
 	
-	public Article createArticle(Article article) {
+	public Article createArticle(ArticleW articleW) {
+		Article article = new Article();
+		article.setCategory(Integer.parseInt(articleW.getIdCategory()));
+		article.setUser(articleW.getIdUser());
+		article.setContent(articleW.getContent());
+		java.sql.Date date = new java.sql.Date(Calendar.getInstance().getTime().getTime()); 
+		article.setDate(date);
 		article = articleRepository.save(article);
 		return article;
 	}
@@ -55,8 +65,16 @@ public class ArticleService {
 		articleRepository.deleteById(id);
 	}
 	
-	public Article updateArticle(int id, Article article) {
+	public Article updateArticle(int id, ArticleW articleW) {
 		Article currentArticle = articleRepository.findById(id).get();
+		
+		Article article = new Article();
+		article.setCategory(Integer.parseInt(articleW.getIdCategory()));
+		article.setUser(articleW.getIdUser());
+		article.setContent(articleW.getContent());
+		java.sql.Date dateNow = new java.sql.Date(Calendar.getInstance().getTime().getTime()); 
+		article.setDate(dateNow);
+		
 		
 		Integer category = article.getCategory();
 		if(category != null) {

@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="ISO-8859-1" />
-    <title>Categories</title>
+    <title>modification</title>
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -12,22 +13,26 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
     />
   </head>
+
   <body>
     <header th:insert="fragments/navbar.html :: nav"></header>
-    <table>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="category: ${categories}">
-          <td><span th:text="${category.id}"></span></td>
-          <td><span th:text="${category.name}"></span></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="card my-4" th:if="${isConnected}">
+      <h5 class="card-header">Modification de la categorie :</h5>
+      <div class="card-body">
+        <form
+          method="post"
+          th:action="@{/save/category}"
+          th:object="${category}"
+        >
+          <input type="hidden" th:field="*{id}" />
+
+          <label>nom</label>
+          <input class="form-group" type="text" th:field="*{name}" required />
+
+          <input class="btn btn-primary" type="submit" value="Valider" />
+        </form>
+      </div>
+    </div>
   </body>
   <script
     src="https://code.jquery.com/jquery-3.4.1.slim.min.js"

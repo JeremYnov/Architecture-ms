@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Modification</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <header th:insert="fragments/navbar.html :: nav"></header>
+    <div class="card my-4" th:if="${isConnected}">
+      <h5 class="card-header">Modification du commentaire :</h5>
+      <div class="card-body">
+        <form
+          method="post"
+          th:action="'/save/comment?idArticle=' + ${comment.article}"
+          th:object="${comment}"
+        >
+          <div class="form-group">
+            <textarea
+              th:field="*{content}"
+              class="form-control"
+              rows="3"
+            ></textarea>
+          </div>
+
+          <input type="hidden" th:value="${comment.id}" id="id" name="id" />
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script
+    src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  ></script>
+</html>

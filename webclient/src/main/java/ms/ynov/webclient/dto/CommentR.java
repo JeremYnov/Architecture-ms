@@ -1,17 +1,14 @@
-package ms.ynov.commentapi.dto;
+package ms.ynov.webclient.dto;
 
 import java.sql.Date;
 
-import ms.ynov.commentapi.model.User;
-
 public class CommentR {
-	
 	private Integer id;
-	
-	private User user;
-	
+
+	private Integer user;
+
 	private Date date;
-	
+
 	private String content;
 	
 	private Integer article;
@@ -24,20 +21,20 @@ public class CommentR {
 		this.id = id;
 	}
 
+	public Integer getUser() {
+		return user;
+	}
+
+	public void setUser(Integer user) {
+		this.user = user;
+	}
+
 	public Date getDate() {
 		return date;
 	}
 
 	public void setDate(Date date) {
 		this.date = date;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public String getContent() {
@@ -55,4 +52,5 @@ public class CommentR {
 	public void setArticle(Integer article) {
 		this.article = article;
 	}
+	
 }
