@@ -43,15 +43,12 @@ public class WebClientController {
     @Autowired
     private ArticleProxy articleProxy;
     
-    @GetMapping("/category")
-	public String getCategories(Model model) {
-		Iterable<Category> categories = categoryProxy.getCategory();
-		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
-		return "listCategory";
-	}
-    
     @GetMapping("/create/category")
 	public String addCategory(Model model) {
+		if (!this.isConnected) {
+			return "redirect:/formLogin";
+		}
+
 		Iterable<Category> categories = categoryProxy.getCategory();
 		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
 
@@ -63,6 +60,10 @@ public class WebClientController {
     
     @GetMapping("/modify/category/{id}")
 	public String modifyCategory(@PathVariable("id") int id, Model model) {
+		if (!this.isConnected) {
+			return "redirect:/formLogin";
+		}
+
 		Iterable<Category> categories = categoryProxy.getCategory();
 		Category category = categoryProxy.getCategory(id);
 		model.addAttribute("category", category).addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
@@ -71,16 +72,12 @@ public class WebClientController {
     
     @GetMapping("/delete/category/{id}")
 	public ModelAndView deleteCategory(@PathVariable("id") int id) {
+		if (!this.isConnected) {
+			return new ModelAndView("redirect:login");
+		}
+
 		categoryProxy.deleteCategory(id);
 		return new ModelAndView("redirect:/");
-	}
-
-    @GetMapping("/user")
-	public String getUsersPage(Model model) {
-		Iterable<User> users = userProxy.getUsers();
-        model.addAttribute("users", users).addAttribute("isConnected", this.isConnected);
-        
-		return "user";
 	}
 
 	@GetMapping("/")
@@ -93,6 +90,10 @@ public class WebClientController {
 
 	@GetMapping("/profile")
 	public String getUserPage(Model model) {
+		if (!this.isConnected) {
+			return "redirect:/formLogin";
+		}
+
         Iterable<Category> categories = categoryProxy.getCategory();
 		model.addAttribute("categories", categories).addAttribute("user",this.session)
 		.addAttribute("isConnected", this.isConnected);
@@ -111,11 +112,6 @@ public class WebClientController {
 		
 		this.setError(null);
 		return "login";
-	}
-
-	@GetMapping("/navbar")
-	public String getNavbar(Model model) {
-		return "navbar.html";
 	}
     
     @GetMapping("/article/{id}")
@@ -158,6 +154,10 @@ public class WebClientController {
 
 	@GetMapping("/add/article")
 	public String addArticle(Model model) {
+		if (!this.isConnected) {
+			return "redirect:/formLogin";
+		}
+
 		Iterable<Category> categories = categoryProxy.getCategory();
 		model.addAttribute("categories", categories).addAttribute("isConnected", this.isConnected);
 
@@ -169,6 +169,10 @@ public class WebClientController {
 	
 	@GetMapping("/modify/article/{id}")
 	public String modifyArticle(@PathVariable("id") int id, Model model) {
+		if (!this.isConnected) {
+			return "redirect:/formLogin";
+		}
+
 		Iterable<Category> categories = categoryProxy.getCategory();
 		Article article = articleProxy.getArticle(id);
 		ArticleW articleW = new ArticleW();
@@ -181,7 +185,11 @@ public class WebClientController {
 	}
 	
 	@GetMapping("/delete/article/{id}")
-	public ModelAndView deleteUser(@PathVariable("id") Integer id, @RequestParam Integer idCategory) {
+	public ModelAndView deleteUser(@PathVariable("id") Integer id, @RequestParam(required = false) Integer idCategory) {
+		if (!this.isConnected) {
+			return new ModelAndView("redirect:/formLogin");
+		}
+
 		articleProxy.deleteArticle(id);
 		return new ModelAndView("redirect:/category/" + idCategory.toString() + "/articles");
 	}
@@ -222,6 +230,9 @@ public class WebClientController {
 	
 	@GetMapping("/logout")
 	public ModelAndView logout() {
+		if (!this.isConnected) {
+			return new ModelAndView("redirect:/formLogin");
+		}
 		
 		this.session = null;
 		this.isConnected = false;
@@ -231,6 +242,10 @@ public class WebClientController {
     
     @PostMapping("/save/user")
 	public ModelAndView saveUser(@ModelAttribute User user) {
+		if (!this.isConnected) {
+			return new ModelAndView("redirect:/formLogin");
+		}
+
     	if (user.getPassword().equals(user.getVerifyPassword())) {
     		userProxy.createUser(user);
     		return new ModelAndView("redirect:/");
@@ -240,7 +255,10 @@ public class WebClientController {
 	}
     
     @PostMapping("/save/comment")
-	public ModelAndView saveComment(@ModelAttribute CommentR comment, @RequestParam Integer idArticle) {
+	public ModelAndView saveComment(@ModelAttribute CommentR comment, @RequestParam(required = false) Integer idArticle) {
+		if (!this.isConnected) {
+			return new ModelAndView("redirect:/formLogin");
+		}
 		
     	if(comment.getId() != null) {
 			commentProxy.updateComment(comment);
@@ -252,6 +270,10 @@ public class WebClientController {
 
 	@GetMapping("/modify/comment/{id}")
 	public String modifyComment(@PathVariable("id") int id, Model model) {	
+		if (!this.isConnected) {
+			return "redirect:/formLogin";
+		}
+
 		Iterable<Category> categories = categoryProxy.getCategory();
 
 		Comment comment = commentProxy.getComment(id);
@@ -270,13 +292,21 @@ public class WebClientController {
 	}
 	
 	@GetMapping("/delete/comment/{id}")
-	public ModelAndView deleteComment(@PathVariable("id") int id, @RequestParam Integer idArticle) {
+	public ModelAndView deleteComment(@PathVariable("id") int id, @RequestParam(required = false) Integer idArticle) {
+		if (!this.isConnected) {
+			return new ModelAndView("redirect:/formLogin");
+		}
+
 		commentProxy.deleteComment(id);
 		return new ModelAndView("redirect:/article/" + idArticle.toString());
 	}
 
     @PostMapping("/save/article")
 	public ModelAndView saveArticle(@ModelAttribute ArticleW articleW, @RequestParam(required = false) Integer idArticle) {
+		if (!this.isConnected) {
+			return new ModelAndView("redirect:/formLogin");
+		}
+
     	if(articleW.getId() != null) {
 			articleProxy.updateArticle(articleW);
 
@@ -291,6 +321,10 @@ public class WebClientController {
     
     @PostMapping("/save/category")
 	public ModelAndView saveCategory(@ModelAttribute Category category) {
+		if (!this.isConnected) {
+			return new ModelAndView("redirect:/formLogin");
+		}
+
     	if(category.getId() != null) {
 			categoryProxy.updateCategory(category);
 		}else {
