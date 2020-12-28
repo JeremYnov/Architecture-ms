@@ -40,6 +40,12 @@ CREATE TABLE IF NOT EXISTS `article` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO `article` (`id`, `category`, `content`, `date`, `user`) VALUES
+(1, 1, 'aaaaaa', '2020-12-08', 1),
+(2, 2, 'bbbbbbbb', '2020-12-08', 2),
+(3, 1, 'esstryrdtjreqtz', '2020-12-15', 1);
+COMMIT;
+
 -- --------------------------------------------------------
 
 --
@@ -69,6 +75,11 @@ CREATE TABLE IF NOT EXISTS `category` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(1, 'category 1'),
+(2, 'category 2');
+COMMIT;
 
 -- --------------------------------------------------------
 
