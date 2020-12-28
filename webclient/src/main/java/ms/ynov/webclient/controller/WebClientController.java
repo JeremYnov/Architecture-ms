@@ -242,10 +242,6 @@ public class WebClientController {
     
     @PostMapping("/save/user")
 	public ModelAndView saveUser(@ModelAttribute User user) {
-		if (!this.isConnected) {
-			return new ModelAndView("redirect:/formLogin");
-		}
-
     	if (user.getPassword().equals(user.getVerifyPassword())) {
     		userProxy.createUser(user);
     		return new ModelAndView("redirect:/");
