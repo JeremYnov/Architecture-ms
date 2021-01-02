@@ -34,27 +34,23 @@ DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category` int DEFAULT NULL,
-  `content` varchar(255) DEFAULT NULL,
+  `content` varchar(8000) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `user` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `article`
 --
 
 INSERT INTO `article` (`id`, `category`, `content`, `date`, `user`) VALUES
-(1, 1, 'aaaaaa', '2020-12-08', 1),
-(2, 2, 'bbbbbbbb', '2020-12-08', 2),
-(3, 1, 'esstryrdtjreqtz', '2020-12-15', 1),
-(4, 2, 'sport reztezrt', '2020-12-26', 4),
-(6, 3, 'mon 2eme sport', '2020-12-26', 4),
-(8, 1, 'reatreaterataertaretadhfkjghera', '2020-12-27', 4),
-(9, 1, 'bbbbbbbbbbbbbbbbbbbb', '2020-12-27', 4),
-(10, 3, 'ttttttttt', '2020-12-27', 4),
-(11, 1, 'dvcjbklfskldbkl', '2020-12-27', 4);
-
+(1, 1, "L'informatique est un domaine d'activité scientifique, technique, et industriel concernant le traitement automatique de l'information numérique par l'exécution de programmes informatiques par des machines : des systèmes embarqués, des ordinateurs, des robots, des automates, etc.", '2020-12-08', 1),
+(2, 1, "Software est le mot anglais pour le logiciel, un ensemble d'instructions données à un appareil informatique.", '2020-12-08', 1),
+(3, 2, "Java est un langage de programmation orienté objet créé par James Gosling et Patrick Naughton, employés de Sun Microsystems, avec le soutien de Bill Joy (cofondateur de Sun Microsystems en 1982), présenté officiellement le 23 mai 1995 au SunWorld.", '2020-12-15', 1),
+(4, 3, "Spring Boot facilite la création d'applications autonomes basées sur Spring de qualité production que vous pouvez «simplement exécuter». Nous adoptons une vision avisée de la plate-forme Spring et des bibliothèques tierces afin que vous puissiez commencer avec un minimum de tracas. La plupart des applications Spring Boot nécessitent une configuration Spring minimale.", '2020-12-26', 2),
+(5, 2, "Java stimule l'innovation dans notre monde numérique. Exploitez ce potentiel avec des ressources Java pour les étudiants codeurs, les amateurs, les développeurs et les responsables informatiques.", '2020-12-26', 2),
+(6, 3, "Ce guide fournit un aperçu de la façon dont Spring Boot vous aide à accélérer le développement d'applications. Au fur et à mesure que vous lirez les guides de mise en route de Spring, vous verrez plus de cas d'utilisation pour Spring Boot. Ce guide est destiné à vous donner un aperçu rapide de Spring Boot. Si vous souhaitez créer votre propre projet basé sur Spring Boot, visitez Spring Initializr , renseignez les détails de votre projet, choisissez vos options et téléchargez un projet groupé sous forme de fichier zip.", '2020-12-26', 2);
 -- --------------------------------------------------------
 
 --
@@ -90,16 +86,16 @@ CREATE TABLE IF NOT EXISTS `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `category`
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
-(2, 'dev'),
-(1, 'test'),
-(3, 'sport');
+(1, 'informatique'),
+(2, 'java'),
+(3, 'framework');
 
 -- --------------------------------------------------------
 
@@ -139,27 +135,21 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `content` varchar(255) NOT NULL,
   `article` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `comment`
 --
 
 INSERT INTO `comment` (`id`, `user`, `date`, `content`, `article`) VALUES
-(1, 1, '2020-12-31', 'mon super commentairec 2', 1),
-(14, 4, '2020-12-26', 'ddddddddddddd', 4),
-(12, 4, '2020-12-26', 'ezarzearzearzearzererzgtregdfshdfsggdfgjisjodfhglkijsdfjgjiopsdfhkovgyqdkjfgvho qjhevfg kojdfh qljkvhgqsd gbvhjgfhljsxckdwv vg', 1),
-(2, 2, '2020-12-12', 'Sed tamen haec cum ita tutius observentur, quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.', 1),
-(3, 1, '2020-12-24', 'Sed tamen haec cum ita tutius observentur, quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.', 1),
-(4, 1, '2020-12-24', 'Sed tamen haec cum ita tutius observentur, quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.', 2),
-(5, 2, '2020-12-24', 'Sed tamen haec cum ita tutius observentur, quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.', 2),
-(9, 1, '2020-01-08', 'mon super commentairec', 1),
-(7, 3, '2020-12-31', 'Sed tamen haec cum ita tutius observentur, quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.', 1),
-(10, 1, '2020-12-31', 'Sed tamen haec cum ita tutius observentur, quidam vigore artuum inminuto rogati ad nuptias ubi aurum dextris manibus cavatis offertur, inpigre vel usque Spoletium pergunt. haec nobilium sunt instituta.', 1),
-(15, 4, '2020-12-26', 'ezrazeraezr', 4),
-(27, 4, '2020-12-27', 'aaaaaaaa bbbbbbbbbbbbbbbb', 5),
-(28, 4, '2020-12-27', 'eazfzaefeaz', 5),
-(29, 4, '2020-12-28', 'zertzerterzterztreztrzetertzer', 1);
+(1, 1, '2020-12-31', "L'informatique c'est trop cool", 1),
+(2, 1, '2020-12-26', "Le langage java est un bon langage objet", 3),
+(3, 1, '2020-12-26', "Spring boot pour le micro service c'est good", 4),
+(4, 2, '2020-12-31', "David tu es le meilleur dev du monde", 1),
+(5, 1, '2020-12-31', "Merci beaucoup jérémy", 1),
+(6, 2, '2020-12-26', "Les erreurs sont chiante", 3),
+(7, 2, '2020-12-26', "I like", 2);
+
 
 -- --------------------------------------------------------
 
@@ -216,14 +206,16 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` varchar(255) NOT NULL,
   `mail` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `username`, `password`, `mail`) VALUES
-(1, 'david', '$2a$10$2Wx0h9yRmlBhrMxzN1zS.ePNPi0rrqw/oRjSHmNKG3H6JAdr4t6/m', 'david@david.com');
+(1, 'david', '$2a$10$2Wx0h9yRmlBhrMxzN1zS.ePNPi0rrqw/oRjSHmNKG3H6JAdr4t6/m', 'david@david.com'),
+(2, 'jeremy', '$2a$10$2Wx0h9yRmlBhrMxzN1zS.ePNPi0rrqw/oRjSHmNKG3H6JAdr4t6/m', 'jeremy@jeremy.com'),
+(3, 'louis', '$2a$10$2Wx0h9yRmlBhrMxzN1zS.ePNPi0rrqw/oRjSHmNKG3H6JAdr4t6/m', 'louis@louis.com');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
