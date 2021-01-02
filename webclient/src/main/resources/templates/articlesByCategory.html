@@ -39,7 +39,7 @@
                 /></a>
                 <div class="card-body">
                   <h4 class="card-title">
-                    <a th:href="'/article/' + ${article.id}">Article Title</a>
+                    <a th:href="'/article/' + ${article.id}">Article N°<span th:text="${article.id}"></span></a>
                   </h4>
                   <p class="card-text">
                     Voici la description de notre article.
