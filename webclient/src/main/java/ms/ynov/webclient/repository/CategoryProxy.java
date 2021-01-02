@@ -6,8 +6,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
-import ms.ynov.webclient.dto.ArticleW;
-import ms.ynov.webclient.model.Article;
 import ms.ynov.webclient.model.Category;
 
 @Repository

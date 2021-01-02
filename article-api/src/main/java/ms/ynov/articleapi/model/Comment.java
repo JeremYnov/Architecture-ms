@@ -1,7 +1,5 @@
 package ms.ynov.articleapi.model;
 
-import java.sql.Date;
-
 public class Comment {
 	private Integer id;
 	

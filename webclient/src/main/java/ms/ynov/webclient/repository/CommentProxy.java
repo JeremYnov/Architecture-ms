@@ -7,7 +7,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
-import ms.ynov.webclient.dto.ArticleW;
 import ms.ynov.webclient.dto.CommentR;
 import ms.ynov.webclient.model.Comment;
 import ms.ynov.webclient.model.User;
